@@ -23,10 +23,15 @@ public class Turno
     [Display(Name = "FechaTurno")]
     [Column(TypeName = "smalldatetime")]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = false)]
     public DateTime? FechaTurno { get; set; }
 
     [Display(Name = "NombreCliente")]
     [StringLength(50)]
     public string? NombreCliente { get; set; }
+
+    [Display(Name = "Tarifa")]
+    public int? IdTarifa { get; set; }
+    [ForeignKey("IdTarifa")]
+    public virtual Tarifa? Tarifa { get; set; }
 }

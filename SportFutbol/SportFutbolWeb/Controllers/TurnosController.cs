@@ -22,7 +22,7 @@ namespace SportFutbolWeb.Controllers
         // GET: Turnos
         public async Task<IActionResult> Index()
         {
-            var sportFutbolContext = _context.Turnos.Include(t => t.Cancha);
+            var sportFutbolContext = _context.Turnos.Include(t => t.Cancha).Include(t => t.Tarifa);
             return View(await sportFutbolContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace SportFutbolWeb.Controllers
 
             var turno = await _context.Turnos
                 .Include(t => t.Cancha)
+                .Include(t => t.Tarifa)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (turno == null)
             {
@@ -49,6 +50,7 @@ namespace SportFutbolWeb.Controllers
         public IActionResult Create()
         {
             ViewData["IdCancha"] = new SelectList(_context.Canchas, "Id", "Id");
+            ViewData["IdTarifa"] = new SelectList(_context.Tarifas, "Id", "Id");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace SportFutbolWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descripcion,IdCancha,FechaTurno,NombreCliente")] Turno turno)
+        public async Task<IActionResult> Create([Bind("Id,Descripcion,IdCancha,FechaTurno,NombreCliente,IdTarifa")] Turno turno)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace SportFutbolWeb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdCancha"] = new SelectList(_context.Canchas, "Id", "Id", turno.IdCancha);
+            ViewData["IdTarifa"] = new SelectList(_context.Tarifas, "Id", "Id", turno.IdTarifa);
             return View(turno);
         }
 
@@ -83,6 +86,7 @@ namespace SportFutbolWeb.Controllers
                 return NotFound();
             }
             ViewData["IdCancha"] = new SelectList(_context.Canchas, "Id", "Id", turno.IdCancha);
+            ViewData["IdTarifa"] = new SelectList(_context.Tarifas, "Id", "Id", turno.IdTarifa);
             return View(turno);
         }
 
@@ -91,7 +95,7 @@ namespace SportFutbolWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Descripcion,IdCancha,FechaTurno,NombreCliente")] Turno turno)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Descripcion,IdCancha,FechaTurno,NombreCliente,IdTarifa")] Turno turno)
         {
             if (id != turno.Id)
             {
@@ -119,6 +123,7 @@ namespace SportFutbolWeb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdCancha"] = new SelectList(_context.Canchas, "Id", "Id", turno.IdCancha);
+            ViewData["IdTarifa"] = new SelectList(_context.Tarifas, "Id", "Id", turno.IdTarifa);
             return View(turno);
         }
 
@@ -132,6 +137,7 @@ namespace SportFutbolWeb.Controllers
 
             var turno = await _context.Turnos
                 .Include(t => t.Cancha)
+                .Include(t => t.Tarifa)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (turno == null)
             {

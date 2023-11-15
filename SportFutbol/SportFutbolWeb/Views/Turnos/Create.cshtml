@@ -1,54 +1,59 @@
 ﻿@model SportFutbolWeb.Domain.Entities.Turno
 
-
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
+    <title>Agregar Turno</title>
 </head>
 <body>
 
-<h4>Turno</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdCancha" class="control-label"></label>
-                <select asp-for="IdCancha" class ="form-control" asp-items="ViewBag.IdCancha"></select>
-            </div>
+    <h4>Turno</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label"></label>
+                    <input asp-for="Descripcion" class="form-control" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdCancha" class="control-label"></label>
+                    <select asp-for="IdCancha" class="form-control" asp-items="ViewBag.IdCancha"></select>
+                    <span id="canchaDescripcion" class="text-muted"></span>
+                </div>
                 <div class="form-group">
                     <label asp-for="FechaTurno" class="control-label"></label>
                     <input asp-for="FechaTurno" type="datetime-local" class="form-control" />
                     <span asp-validation-for="FechaTurno" class="text-danger"></span>
                 </div>
-            <div class="form-group">
-                <label asp-for="NombreCliente" class="control-label"></label>
-                <input asp-for="NombreCliente" class="form-control" />
-                <span asp-validation-for="NombreCliente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <label asp-for="NombreCliente" class="control-label"></label>
+                    <input asp-for="NombreCliente" class="form-control" />
+                    <span asp-validation-for="NombreCliente" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdTarifa" class="control-label"></label>
+                    <select asp-for="IdTarifa" class="form-control" asp-items="ViewBag.IdTarifa"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Agregar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Volver</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
 </body>
 </html>
