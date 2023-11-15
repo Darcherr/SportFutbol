@@ -1,0 +1,59 @@
+﻿@model SportFutbolWeb.ViewModels.CanchaViewModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>Cancha</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            <form enctype="multipart/form-data" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoRefId" class="control-label"></label>
+                <select asp-for="TipoRefId" class ="form-control" asp-items="ViewBag.TipoRefId"></select>
+            </div>
+                <div class="form-group">
+                    <label asp-for="Imagen" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Imagen" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Seleccione el archivo</label>
+                    </div>
+                    <span asp-validation-for="Imagen" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+        <script type="text/javascript">
+            // Add the following code if you want the name of the file appear on select
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        </script>
+}
+</body>
+</html>

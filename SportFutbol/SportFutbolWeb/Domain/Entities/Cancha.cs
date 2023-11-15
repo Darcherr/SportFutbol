@@ -19,4 +19,8 @@ public class Cancha
     public int? TipoRefId { get; set; }
     [ForeignKey("TipoRefId")]
     public virtual TipoCancha? TipoCancha { get; set; }
+
+    [Display(Name = "Imagen")]
+    public string? ImagenCancha { get; set; }
+
 }

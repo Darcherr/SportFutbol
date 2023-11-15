@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportFutbolWeb.Infrastructure;
 
@@ -11,9 +12,11 @@ using SportFutbolWeb.Infrastructure;
 namespace SportFutbolWeb.Migrations
 {
     [DbContext(typeof(SportFutbolContext))]
-    partial class SportFutbolContextModelSnapshot : ModelSnapshot
+    [Migration("20231115112527_replicaenBaseDeDatos")]
+    partial class replicaenBaseDeDatos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
